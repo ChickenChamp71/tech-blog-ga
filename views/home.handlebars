@@ -2,7 +2,7 @@
 {{#each allPosts}}
     <div class="post">
        <h4>{{title}}</h4>
-        <p>Posted by {{user.username}} on {{slice time 0 15}}.</p>
+        <p>Posted by {{user.username}} on {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
         <h5>{{content}}</h5>
     </div>
 {{/each}}

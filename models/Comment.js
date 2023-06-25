@@ -15,6 +15,24 @@ Comment.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+            get() {
+                const nowTime = this.getDataValue('createdAt');
+                return nowTime.toISOString().split('T')[0];
+            }
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+            get() {
+                const nowTime = this.getDataValue('createdAt');
+                return nowTime.toISOString().split('T')[0];
+            }
+        },
         post_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -34,8 +52,6 @@ Comment.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        timestamps: true,
-        createdAt: 'time',
         modelName: 'comment'
     }
 );

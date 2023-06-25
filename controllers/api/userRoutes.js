@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.body.id, {
+        const userData = await User.findByPk(req.params.id, {
             include: { model: Post, include: Comment }
         });
 
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/', async (req, res) => {
     try {
-        const userData = await User.delete({
+        const userData = await User.destroy({
             where: {
                 id: req.params.id
             }
@@ -46,6 +46,8 @@ router.delete('/', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body);
+
+        console.log('test one')
 
         req.session.save(() => {
             req.session.user_id = userData.user_id;

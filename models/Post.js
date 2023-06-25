@@ -19,6 +19,24 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+            get() {
+                const nowTime = this.getDataValue('createdAt');
+                return nowTime.toISOString().split('T')[0];
+            }
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+            get() {
+                const nowTime = this.getDataValue('createdAt');
+                return nowTime.toISOString().split('T')[0];
+            }
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -31,9 +49,6 @@ Post.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        timestamps: true,
-        createdAt: 'time',
-        updatedAt: 'update_time',
         modelName: 'post'
     }
 );

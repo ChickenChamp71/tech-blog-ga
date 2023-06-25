@@ -1,9 +1,11 @@
-<h2>{{post}}</h2>
-<p>Posted by {{user.username}} at {{post.time}}.</p>
-<h3>{{post.content}}</h3>
+{{#each singlePost}}
+<h2>{{title}}</h2>
+<p>Posted by {{user.username}} at {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
+<h3>{{content}}</h3>
 <button id="comment-btn">Comment</button>
+{{/each}}
 
-{{#each comment}}
+{{#each comments}}
     <h3>{{content}}</h3>
-    <p>Commented by {{user.username}} at {{comment.time}}.</p>
+    <p>Commented by {{user.username}} at {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
 {{/each}}
