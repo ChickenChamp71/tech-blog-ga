@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Post Time",
+        "content": "This is a sample post bestie, I'm crying.",
+        "user_id": "1"
+    },
+    {
+        "title": "Another Post",
+        "content": "Screaming crying dying",
+        "user_id": "2"
+    },
+    {
+        "title": "Final Post",
+        "content": "Final post :D",
+        "user_id": "3"
+    }
+]

@@ -7,9 +7,7 @@ router.get('/', (req, res) => {
         include:[User]
     })
     .then (postData => {
-        const posts = postData.map((post) => {
-            post.get({ plain: true })
-        });
+        const posts = postData.map((post) => post.get({ plain: true }));
 
         console.log(posts);
 
@@ -30,6 +28,42 @@ router.get('/post/:id', (req, res) => {
         console.log(post);
 
         res.render('singlePost', post)
-    })
+    });
 });
 
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        return res.redirect('/dashboard')
+    };
+
+    res.render('login', {
+        logged_in: req.session.logged_in
+    });
+});
+
+router.get('/signup', (req, res) => {
+    if (req.session.logged_in) {
+        return res.redirect('/dashboard');
+    };
+
+    res.render('signup');
+});
+
+router.get('/dashboard', (req, res) => {
+    if (!req.session.logged_in) {
+        return res.redirect('/login');
+    } else {
+        User.findByPk(req.session.user_id, {
+            include: [Post],
+        })
+        .then(userData => {
+            const user = userData.get({ plain: true });
+            console.log(user);
+            user.logged_in = req.session.logged_in;
+
+            res.render('dashboard', user);
+        });
+    };
+});
+
+module.exports = router;

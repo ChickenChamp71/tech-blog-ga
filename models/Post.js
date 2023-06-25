@@ -25,12 +25,15 @@ Post.init(
                 model: 'user',
                 key: 'id'
             }
-        },
+        }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
+        timestamps: true,
+        createdAt: 'time',
+        updatedAt: 'update_time',
         modelName: 'post'
     }
 );
