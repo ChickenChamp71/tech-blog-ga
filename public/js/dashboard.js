@@ -3,7 +3,7 @@ document.querySelector('form').addEventListener('submit', sub => {
 
     const postObj = {
         title: document.querySelector('#title').value,
-        content: document.querySelector('#content').value
+        content: document.querySelector('#content').value,
     };
     fetch('/api/posts', {
         method: 'POST',

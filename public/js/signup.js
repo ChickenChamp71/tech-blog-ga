@@ -2,7 +2,6 @@ const signupForm = document.querySelector('#signup-form');
 
 signupForm.addEventListener('submit', sub => {
 
-    console.log('GOES HERE !')
     sub.preventDefault();
 
     const userObj = {
@@ -20,7 +19,7 @@ signupForm.addEventListener('submit', sub => {
     })
     .then (res => {
         if (res.ok) {
-            location.href = '/dashboard'
+            window.location.assign('/dashboard')
         } else {
             location.reload();
             console.log('failed');

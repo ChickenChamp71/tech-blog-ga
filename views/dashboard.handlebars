@@ -1,18 +1,19 @@
 <h2>{{user.username}}'s Dashboard</h2>
 <h3>Posts</h3>
 {{#each post}}
-    <h4>{{title}}</h4>
-    <p>Posted by {{user.username}} at {{time}}.</p>
-    <h5>{{content}}</h5>
-    <button class="del-btn" data-post-id="{{id}}">Delete</button>
-    <hr>
+    <a href="/post/{{id}}">
+        <h4>{{title}}</h4>
+        <p>Posted by {{User.username}} at {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
+        <h5>{{content}}</h5>
+        <hr>
+    </a>
 {{/each}}
 
 <h3>New Post:</h3>
-<form action="">
+<form action="/api/posts">
     <input type="text" id="title" placeholder="Title">
     <textarea id="content" placeholder="Content"></textarea>
     <button>Submit</button>
 </form>
 
-<script src="../public/js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>

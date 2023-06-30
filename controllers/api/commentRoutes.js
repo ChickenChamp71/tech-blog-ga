@@ -31,7 +31,10 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const commentData = await Comment.create(req.body);
+        const commentData = await Comment.create({
+            ...req.body,
+            user_id: req.session.user_id
+        });
         res.status(200).json(commentData);
     } catch (err) {
         res.status(500).json(err);
@@ -54,11 +57,7 @@ router.delete('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        const commentData = await Comment.findByPk({
-            where: {
-                id: req.params.id
-            }
-        });
+        const commentData = await Comment.findByPk(req.params.id);
         
         if (!commentData) {
             res.status(404).json({ message: 'No comment found.' });

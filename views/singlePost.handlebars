@@ -1,11 +1,26 @@
-{{#each singlePost}}
-<h2>{{title}}</h2>
-<p>Posted by {{user.username}} at {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
-<h3>{{content}}</h3>
+<h2 data-post-id="{{singlePost.id}}">{{singlePost.title}}</h2>
+<p>Posted by {{singlePost.User.username}} at {{#if singlePost.updatedAt}}{{singlePost.updatedAt}}{{else}}{{singlePost.createdAt}}{{/if}}.</p>
+<h3>{{singlePost.content}}</h3>
 <button id="comment-btn">Comment</button>
-{{/each}}
+{{#if user_true}}
+<button class="del-btn" data-post-id="{{id}}">Delete</button>
+<button class="edit-btn" data-post-id="{{id}}">Edit</button>
+{{/if}}
+
+<form action="" id="edit-form" style="display: none;">
+    <input type="text" id="title">
+    <textarea id="content-text"></textarea>
+    <button id="edit-sub">Submit</button>
+</form>
+
+<form action="" id="comment-form" style="display: none;">
+    <textarea id="comment-text"></textarea>
+    <button id="comment-sub">Submit</button>
+</form>
 
 {{#each comments}}
     <h3>{{content}}</h3>
-    <p>Commented by {{user.username}} at {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
+    <p>Commented by {{User.username}} at {{#if updatedAt}}{{updatedAt}}{{else}}{{createdAt}}{{/if}}.</p>
 {{/each}}
+
+<script src="/js/singlePost.js"></script>

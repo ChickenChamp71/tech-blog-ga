@@ -1,30 +1,26 @@
-const loginForm = document.querySelector('#login-form');
+const loginForm = document.querySelector("#login-form");
 
-loginForm.addEventListener('submit', sub => {
+loginForm.addEventListener("submit", sub => {
     sub.preventDefault();
 
-    console.log('LSDJAFLKSDJ')
-
-    console.log(document.querySelector('#login-username'));
-
     const userObj = {
-        username: document.querySelector('#login-username').value,
-        password: document.querySelector('#login-password').value,
+        username: document.querySelector("#login-username").value,
+        password: document.querySelector("#login-password").value,
     };
 
-    fetch('/api/users/login',
+    fetch("/api/users/login",
     {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(userObj),
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type":"application/json"
         }
     })
     .then (res => {
-        if (res.ok) {
-            location.href = '/dashboard'
+        if (res.status === 200) {
+            location.href = "/dashboard"
         } else {
-            alert('Unsuccessful login attempt.');
+            alert("Unsuccessful login attempt.");
         }
     })
 });
